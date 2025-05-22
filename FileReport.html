@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FILE A REPORT</title>
+      <link rel="stylesheet" href="FileReport.css">
+
+    </head>  
+    <div class="lost-found-container">
+      <!--Header -->  
+      <header class="header">
+        <div class="logo-section">
+          <img src="/UDMLOGO.png" alt="UDM Logo" class="logo" />
+          <span class="title">Universidad De Manila<br></br><p>Former City College of Manila</p></span>
+          <h1>Lost and Found</h1>
+          
+        </div>
+        <nav>
+          <a href="About.html" class="nav-link">About</a>
+        </nav>
+      </header>
+      <!--Main Component-->
+      <!--Categories-->
+      <body>
+        <div class = "item-container">
+         <h1>Report Lost Item</h1>
+         <div class = "forms">
+             <form class="form-groups">
+                <label for="category">Item Category</label><br>
+                <select name="category" id="category" required>
+                <option value=" " disabled selected hidden> Select Categories</option>
+                <option value="electronics">Electronics</option>
+                <option value="stationery">Stationery</option>
+                <option value="clothing">Clothing</option>
+                <option value="bags">Bags</option>
+                <option value="id & cards">Id & Cards</option>
+                <option value="books">books</option>
+                <option value="accessories">Accessories</option>
+                <option value="miscellaneous">Miscellaneous</option>
+                <option value="other">Other</option>
+                </select>  <br></br>
+                
+            <!--Description-->
+
+             
+                <label for="description-item">Descriptions &nbsp; </label>
+                <input type="text" placeholder="Describe...">
+            
+            <br></br>
+
+            <!--Date-->
+            <div class="Date">
+                <label for="date">Date &nbsp; </label>
+                <input type="date" placeholder="Enter the exact date...">
+            </div>  
+            <br></br>
+
+            <div class="LaL">
+                <label for="location and last seen">Location and Last Seen </label>
+                <input type="text" placeholder="Enter the details...">
+            </div>
+            <br></br>
+
+            <!--MISSING BUTTONS-->
+            <div class="radios">
+              <label class="radio-button">
+                  <input type="radio" name="status" value="missing">
+                    Missing
+              </label>  
+
+            <!--FOUND BUTTONS-->
+              <label class="radio-button">
+                  <input type="radio" name="status" value="found">
+                    Found
+              </label>
+            </div>
+            
+             </form>
+
+              
+            
+         </div>
+        </div>    
+      </body>
+
+</html>

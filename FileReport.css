@@ -1,0 +1,166 @@
+html,body{
+    margin: 0;
+    padding: 0;
+}
+/* Header */
+.lost-found-container {
+  background: linear-gradient(to bottom right, #bdf5d1, #f1e6c5);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.header {
+  background-color: #2e5d45;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 0px;
+}
+
+.logo-section {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  height: 40px;
+  margin-right: 10px;
+  margin-left: 20px;
+}
+
+.title {
+  font-size: 25px;
+  font-weight: bold;
+}
+.title p{
+  font-family: 'Courier New', Courier, monospace;
+  margin-top: -25px;
+  margin-bottom: 0px;
+  word-spacing: 0px;
+  letter-spacing: 0px;
+  font-size: 15px;
+}
+.header h1{
+  margin-left: 20px;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  margin-right: 20px;
+}
+
+/* CONTAINER */
+
+.item-container{
+    display: flex;
+    justify-content: flex-start;
+    flex-direction: column;
+    overflow-x: scroll;
+    text-align: center;
+    background-color: white;
+    padding: 50px;
+    border: solid darkolivegreen;
+    box-shadow: gray;
+    border-radius: 10px;
+    width: 700px;
+    height: 600px;
+    margin: auto;
+}
+
+.item-container h1{
+    margin-top: -30px;
+    font-weight: 100;
+}
+
+.item-container label{
+    display: flex;
+    text-align: left;
+    margin-left: -100px;
+    justify-content: flex-start;
+}
+
+/* FORMS*/
+
+.forms{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 500px;
+    overflow: hidden, scroll;
+    border-radius: 30px;
+}
+
+.forms label{
+    margin-left: 0%;
+    text-align: left;
+}
+
+
+select{
+    margin-top: 5px;
+    margin-left: -5%;
+    background-color: #fffde7;
+    padding: 20px;
+    width: 139%;
+    border-radius: 10px;
+}
+
+select:invalid {
+    color: black;
+}
+
+.forms input{
+    display: flex;
+    flex-direction: column;
+    margin-left: -5%;
+    margin-top: 20px;
+    margin-bottom: -20px;
+    background-color: #fffde7;
+    padding: 20px;
+    width: 130%;
+    border-radius: 10px;
+}
+
+
+
+/*DATE*/
+
+
+
+.Date label{
+    margin-left: 0%;
+    text-align: left;
+}
+
+/*Location and Last Seen*/
+.LaL label{
+    margin-left: 0%;
+    text-align: left;
+}
+
+/*BUTTONS*/
+.radios {
+  display: flex;
+  justify-content: center;
+  gap: 30px;  /* enough space between buttons */
+  margin-top: 20px;
+  background-color: yellow; /* para makita natin ang container */
+  padding: 10px;
+  width: 100%;  /* full width para hindi sikip */
+  box-sizing: border-box;
+}
+
+.radio-button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 16px;
+  color: black;
+  margin: 0; /* remove margin */
+}
+
+
+
