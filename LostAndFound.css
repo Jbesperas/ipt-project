@@ -21,6 +21,16 @@ body, html {
   align-items: center;
   margin-top: 0px;
 }
+.header h1{
+  margin-left: 20px;
+}
+
+.nav-link {
+  color: white;
+  text-decoration: none;
+  font-weight: 500;
+  margin-right: 20px;
+}
 
 .logo-section {
   display: flex;
@@ -34,8 +44,9 @@ body, html {
 }
 
 .title {
-  font-size: 1.5rem;
+  font-size: 25px;
   font-weight: bold;
+  font-family: 'Times New Roman';
 }
 .title p{
   font-family: 'Courier New', Courier, monospace;
@@ -44,16 +55,6 @@ body, html {
   word-spacing: 0px;
   letter-spacing: 0px;
   font-size: 15px;
-}
-.header h1{
-  margin-left: 20px;
-}
-
-.nav-link {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-  margin-right: 20px;
 }
 
 /* Main */

@@ -31,7 +31,7 @@ export default function LostAndFound() {
         </div>
 
         <div className="button-group">
-          <a href="FileFound.html" className="btn report">File a Report <img src ="MISSINGLOGO.PNG" className ="RLogo"alt = "FileLogo"></img></a>
+          <a href="FileReport.html" className="btn report">File a Report <img src ="MISSINGLOGO.PNG" className ="RLogo"alt = "FileLogo"></img></a>
           <a href="FileFound.html" className="btn records">Recent Records <img src ="FILELOGO.PNG" className ="FLogo" alt = "RecordsLogo"></img></a>
         </div>
       </main>
