@@ -58,16 +58,16 @@ html,body{
     display: flex;
     justify-content: flex-start;
     flex-direction: column;
-    overflow-x: scroll;
     text-align: center;
     background-color: white;
     padding: 50px;
     border: solid darkolivegreen;
     box-shadow: gray;
     border-radius: 10px;
-    width: 700px;
-    height: 600px;
+    width: 750px;
+    height: 650px;
     margin: auto;
+   
 }
 
 .item-container h1{
@@ -88,8 +88,7 @@ html,body{
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: 500px;
-    overflow: hidden, scroll;
+    width: 100%;
     border-radius: 30px;
 }
 
@@ -101,10 +100,9 @@ html,body{
 
 select{
     margin-top: 5px;
-    margin-left: -5%;
     background-color: #fffde7;
     padding: 20px;
-    width: 139%;
+    width: 100%;
     border-radius: 10px;
 }
 
@@ -115,12 +113,11 @@ select:invalid {
 .forms input{
     display: flex;
     flex-direction: column;
-    margin-left: -5%;
     margin-top: 20px;
     margin-bottom: -20px;
     background-color: #fffde7;
     padding: 20px;
-    width: 130%;
+    width: 94.5%;
     border-radius: 10px;
 }
 
@@ -133,34 +130,111 @@ select:invalid {
 .Date label{
     margin-left: 0%;
     text-align: left;
+    margin-top: 10px;
 }
 
 /*Location and Last Seen*/
 .LaL label{
     margin-left: 0%;
     text-align: left;
+    margin-top: 10px;
 }
 
 /*BUTTONS*/
 .radios {
   display: flex;
   justify-content: center;
-  gap: 30px;  /* enough space between buttons */
+  text-align: left;
+  gap: 30px;  
   margin-top: 20px;
-  background-color: yellow; /* para makita natin ang container */
-  padding: 10px;
-  width: 100%;  /* full width para hindi sikip */
-  box-sizing: border-box;
 }
 
 .radio-button {
   display: flex;
-  align-items: center;
-  gap: 8px;
-  font-size: 16px;
-  color: black;
-  margin: 0; /* remove margin */
+  align-items: center;  
+  justify-content: center;
+  gap: 8px;               
+  padding: 10px 140px;    
+  cursor: pointer;
+  background-color: #fffde7;
+  border-radius: 8px;
+  border: 1px solid black;
+  user-select: none;     /* para hindi ma-select accidental yung text */
+  width: auto;
+
 }
+
+.radio-button input[type="radio"] {
+  margin: 0;             /* para walang extra space */
+}
+
+/*OWNERS INFORMATION*/
+
+.owners-name {
+  display: flex;
+  justify-content: center;
+  text-align: left;
+  gap: 30px;  
+  margin-top: 10px;
+  width: 100%;
+
+  
+}
+
+.contacts {
+  flex: 1;
+  padding: 10px auto;
+  display: flex;
+  align-items: center;  
+  justify-content: center;
+  border-radius:solid;
+
+  
+}
+.contacts input[type="text"]
+{
+  background-color: #fffde7;
+  padding: 15px;
+  margin: 0%;
+  width: 100%;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+.contacts input[type="tel"] {
+  background-color: #fffde7;
+  padding: 15px;
+  width: 100%;
+  border-radius: 10px;
+  margin: 0%;
+  box-sizing: border-box;
+}
+
+.Nav-Buttons a{
+  color: black;
+  text-decoration: none;
+  font-weight: 500;
+  margin-right: 20px;
+  border: black;
+}
+.Nav-Buttons {
+  border: black;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.nav-btn {
+  background-color: goldenrod;
+  color: white;
+  padding: 12px 30px;
+  border-radius: 10px;
+  font-size: 17px;
+  font-weight: bold;
+}
+
+
+
+
 
 
 

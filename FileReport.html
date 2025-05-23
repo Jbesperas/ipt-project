@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FILE A REPORT</title>
-      <link rel="stylesheet" href="FileReport.css">
+    <link rel="stylesheet" href="FileReport.css">
 
     </head>  
+    <body>
     <div class="lost-found-container">
       <!--Header -->  
       <header class="header">
@@ -22,7 +23,6 @@
       </header>
       <!--Main Component-->
       <!--Categories-->
-      <body>
         <div class = "item-container">
          <h1>Report Lost Item</h1>
          <div class = "forms">
@@ -47,36 +47,59 @@
                 <label for="description-item">Descriptions &nbsp; </label>
                 <input type="text" placeholder="Describe...">
             
-            <br></br>
+            <br>
 
             <!--Date-->
             <div class="Date">
                 <label for="date">Date &nbsp; </label>
                 <input type="date" placeholder="Enter the exact date...">
             </div>  
-            <br></br>
+            <br>
 
             <div class="LaL">
                 <label for="location and last seen">Location and Last Seen </label>
                 <input type="text" placeholder="Enter the details...">
             </div>
-            <br></br>
+            <br>
 
             <!--MISSING BUTTONS-->
             <div class="radios">
               <label class="radio-button">
                   <input type="radio" name="status" value="missing">
-                    Missing
+                    <span>Missing</span>
               </label>  
 
             <!--FOUND BUTTONS-->
               <label class="radio-button">
                   <input type="radio" name="status" value="found">
-                    Found
+                    <span>Found</span>
+              </label>
+            </div>
+            <br>
+            <!--OWNER'S INFORMATION-->
+            <label>Owner's Information</label>
+            <div class="owners-name">
+              <label class="contacts" >
+                  <input type="text"  name="ownerName" placeholder="Name...">
+              </label>  
+
+            <!--FOUND BUTTONS-->
+              <label class="contacts">
+                  <input type="tel"  name="ownerNumber" placeholder="Contact Number...">
               </label>
             </div>
             
+            <!--NAV BUTTONS-->
+
+            <!-- NAV BUTTONS -->
+            <div class="Nav-Buttons">
+                <button type="button" class="nav-btn">Back</button>
+                <button type="submit" class="nav-btn">Submit</button>
+            </div>
+
+
              </form>
+
 
               
             
