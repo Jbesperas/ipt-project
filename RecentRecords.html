@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Recent Records - Lost and Found</title>
+  <link rel="stylesheet" href="RecentRecords.css" />
+  <style>
+    .status.unclaimed { background-color: red; color: white; padding: 2px 6px; border-radius: 4px; cursor: pointer; }
+    .status.claimed { background-color: green; color: white; padding: 2px 6px; border-radius: 4px; cursor: pointer; }
+  </style>
+</head>
+<body style="margin: 0; display: flex; flex-direction: column; min-height: 100vh;">
+
+  <header>
+    <div class="logo">
+      <img src="UDMLOGO.png" alt="University Logo" />
+      <div class="logo-text">
+        <div>Universidad de Manila</div>
+        <small>Former City College of Manila</small>
+      </div>
+      <div><h2>Lost and Found</h2></div>
+    </div>
+    <div class="nav">
+      <a href="About.html">About</a>
+    </div>
+  </header>
+
+  <h1>Recent Records</h1>
+
+  <div class="filter-bar">
+    <a href="index.html">
+      <img class="backarrow" src="backarrow.png" alt="Back" />
+    </a>
+
+    <input type="text" id="searchBar" placeholder="Search Records..." />
+    
+    <select id="categoryFilter">
+      <option value="">All Categories</option>
+      <option value="electronics">Electronics</option>
+      <option value="clothing">Clothing</option>
+      <option value="id & cards">ID & Cards</option>
+      <option value="bags">Bags</option>
+      <option value="books">Books</option>
+      <option value="accessories">Accessories</option>
+      <option value="miscellaneous">Miscellaneous</option>
+    </select>
+
+    <select id="statusFilter">
+      <option value="">Statuses</option>
+      <option value="claimed">Claimed</option>
+      <option value="unclaimed">Unclaimed</option>
+    </select>
+
+    <button id="filterToggle">Reset</button>
+  </div>
+
+  <div class="records" id="recordsList" style="flex: 1;"></div>
+
+  <footer class="footer">
+    <p>
+      <img src="FACEBOOK.png" alt="Facebook" class="icon">
+      <a href="https://www.facebook.com/UdM.Merlions">Universidad de Manila Official Page</a>
+    </p>
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const recordsContainer = document.getElementById("recordsList");
+      const records = JSON.parse(localStorage.getItem("lostFoundRecords")) || [];
+
+      if (records.length === 0) {
+        recordsContainer.innerHTML = "<p>No records found.</p>";
+        return;
+      }
+
+      // Generate cards
+      records.forEach(record => {
+        const card = document.createElement("div");
+        card.classList.add("card");
+        card.dataset.category = record.category;
+        card.dataset.status = record.status.toLowerCase();
+
+        card.innerHTML = `
+          <h3>${record.category}</h3>
+          <p><strong>Description:</strong> ${record.description}</p>
+          <p><strong>Date:</strong> ${record.date}</p>
+          <p><strong>Location:</strong> ${record.location}</p>
+          <p><strong>Owner:</strong> ${record.ownerName} | <strong>Contact:</strong> ${record.ownerNumber}</p>
+          <span class="status ${record.status === "missing" ? "unclaimed" : "claimed"}">
+            ${record.status === "missing" ? "Unclaimed" : "Claimed"}
+          </span>
+        `;
+
+        recordsContainer.appendChild(card);
+      });
+
+      const categoryFilter = document.getElementById("categoryFilter");
+      const statusFilter = document.getElementById("statusFilter");
+      const searchBar = document.getElementById("searchBar");
+      const filterButton = document.getElementById("filterToggle");
+
+      function filterCards() {
+        const selectedCategory = categoryFilter.value.toLowerCase();
+        const selectedStatus = statusFilter.value.toLowerCase();
+        const query = searchBar.value.toLowerCase();
+        const cards = document.querySelectorAll("#recordsList .card");
+
+        cards.forEach(card => {
+          const cardCategory = card.dataset.category.toLowerCase();
+          const cardStatus = card.dataset.status.toLowerCase();
+          const text = card.textContent.toLowerCase();
+
+          const matchCategory = !selectedCategory || cardCategory === selectedCategory;
+          const matchStatus = !selectedStatus || cardStatus === selectedStatus;
+          const matchText = text.includes(query);
+
+          const isMatch = matchCategory && matchStatus && matchText;
+          card.style.display = isMatch ? "block" : "none";
+        });
+      }
+
+      categoryFilter.addEventListener("change", filterCards);
+      statusFilter.addEventListener("change", filterCards);
+      searchBar.addEventListener("input", filterCards);
+
+      filterButton.addEventListener("click", function () {
+        categoryFilter.value = "";
+        statusFilter.value = "";
+        searchBar.value = "";
+
+        document.querySelectorAll("#recordsList .card").forEach(card => {
+          card.style.display = "block";
+        });
+      });
+
+      document.querySelectorAll(".card .status").forEach(badge => {
+        badge.addEventListener("click", function () {
+          const currentStatus = badge.textContent.trim();
+
+          if (currentStatus === "Unclaimed") {
+            badge.textContent = "Claimed";
+            badge.classList.remove("unclaimed");
+            badge.classList.add("claimed");
+            badge.closest(".card").dataset.status = "claimed";
+          } else {
+            badge.textContent = "Unclaimed";
+            badge.classList.remove("claimed");
+            badge.classList.add("unclaimed");
+            badge.closest(".card").dataset.status = "unclaimed";
+          }
+
+          filterCards();
+        });
+      });
+    });
+  </script>
+</body>
+</html>
