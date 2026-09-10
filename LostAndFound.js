@@ -1,55 +1,91 @@
-import React from 'react';
-import './LostAndFound.css';
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const recordsContainer = document.getElementById("recordsList");
 
-export default function LostAndFound() {
-  return (
-    <div className="lost-found-container">
-      {/* Header */}
-      <header className="header">
-        <div className="logo-section">
-          <img src="/UDMLOGO.png" alt="UDM Logo" className="logo" />
-          <span className="title">Universidad De Manila<br></br><p>Former City College of Manila</p></span>
-          <h1>Lost and Found</h1>
-          
-        </div>
-        <nav>
-          <a href="About.html" className="nav-link">About</a>
-        </nav>
-      </header>
+  // 1. Load records from localStorage
+  const records = JSON.parse(localStorage.getItem("lostFoundRecords")) || [];
 
-      {/* Main Section */}
-      <main className="main-content">
-        <div className="losslogo">
-          <div className="text-content">
-            <h1>
-            <strong>  Find <span className="highlight">IT!</span></strong>
-            </h1>
-            <p>Your navigation to lost & found posts.</p>
-          </div>
-          <br></br>
-          <img src="/lostfound-icon1.jpg" alt="Lost and Found" className="loss-image" />
-        </div>
+  if (records.length === 0) {
+    recordsContainer.innerHTML = "<p>No records found.</p>";
+    return;
+  }
 
-        <div className="button-group">
-          <a href="FileReport.html" className="btn report">File a Report <img src ="MISSINGLOGO.PNG" className ="RLogo"alt = "FileLogo"></img></a>
-          <a href="FileFound.html" className="btn records">Recent Records <img src ="FILELOGO.PNG" className ="FLogo" alt = "RecordsLogo"></img></a>
-        </div>
-      </main>
+  // 2. Dynamically create cards
+  records.forEach((record) => {
+    const card = document.createElement("div");
+    card.classList.add("card");
+    card.dataset.category = record.category;
+    card.dataset.status = record.status.charAt(0).toUpperCase() + record.status.slice(1); // Capitalize first letter
 
-      {/* Footer */}
-      <footer className="footer">
-        <p>
-          <img
-            src ="/FACEBOOK.PNG"
-            alt="Facebook"
-            className="icon"
-          />
-         <a href="https://www.facebook.com/UdM.Merlions" target="_blank" rel = "noreferrer">UDM OFFICIAL PAGE</a> |              
-         <a href="https://www.facebook.com/profile.php?id=100089008504274" target="_blank" rel = "noreferrer">MERLION FREEDOM WALL</a> |      
-         <a href="https://www.facebook.com/official.udmssg" target="_blank" rel = "noreferrer">UDM SSG OFFICIAL PAGE</a> | 
-        </p>
-      </footer>
-    </div>
-  );
-}
- 
+    card.innerHTML = `
+      <h3>${record.category}</h3>
+      <p><strong>Description:</strong> ${record.description}</p>
+      <p><strong>Date:</strong> ${record.date}</p>
+      <p><strong>Location:</strong> ${record.location}</p>
+      <p><strong>Owner:</strong> ${record.ownerName} | <strong>Contact:</strong> ${record.ownerNumber}</p>
+      <span class="status badge ${record.status === "missing" ? "unclaimed" : "claimed"}">
+        ${record.status === "missing" ? "Unclaimed" : "Claimed"}
+      </span>
+    `;
+    recordsContainer.appendChild(card);
+  });
+
+  // 3. Filtering logic
+  const categoryFilter = document.getElementById("categoryFilter");
+  const statusFilter = document.getElementById("statusFilter");
+  const searchBar = document.getElementById("searchBar");
+  const filterButton = document.getElementById("filterToggle");
+  const cards = document.querySelectorAll("#recordsList .card");
+
+  function filterCards() {
+    const selectedCategory = categoryFilter.value.toLowerCase();
+    const selectedStatus = statusFilter.value.toLowerCase();
+    const query = searchBar.value.toLowerCase();
+
+    cards.forEach(card => {
+      const cardCategory = card.dataset.category.toLowerCase();
+      const cardStatus = card.dataset.status.toLowerCase();
+      const text = card.textContent.toLowerCase();
+
+      const matchCategory = !selectedCategory || cardCategory === selectedCategory;
+      const matchStatus = !selectedStatus || cardStatus === selectedStatus;
+      const matchText = text.includes(query);
+
+      const isMatch = matchCategory && matchStatus && matchText;
+      card.style.display = isMatch ? "block" : "none";
+    });
+  }
+
+  categoryFilter.addEventListener("change", filterCards);
+  statusFilter.addEventListener("change", filterCards);
+  searchBar.addEventListener("input", filterCards);
+
+  filterButton.addEventListener("click", function () {
+    categoryFilter.value = "";
+    statusFilter.value = "";
+    searchBar.value = "";
+    cards.forEach(card => card.style.display = "block");
+  });
+
+  // 4. Toggle status
+  const statusBadges = document.querySelectorAll(".card .status");
+
+  statusBadges.forEach(badge => {
+    badge.addEventListener("click", function () {
+      const currentStatus = badge.textContent.trim();
+      if (currentStatus === "Unclaimed") {
+        badge.textContent = "Claimed";
+        badge.classList.remove("unclaimed");
+        badge.classList.add("claimed");
+        badge.closest(".card").dataset.status = "Claimed";
+      } else {
+        badge.textContent = "Unclaimed";
+        badge.classList.remove("claimed");
+        badge.classList.add("unclaimed");
+        badge.closest(".card").dataset.status = "Unclaimed";
+      }
+      filterCards(); // re-apply filter
+    });
+  });
+});
+</script>
